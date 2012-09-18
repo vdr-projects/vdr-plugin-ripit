@@ -26,19 +26,24 @@ class cRipitSetup {
 public:
   cRipitSetup(void);
   int  Ripit_hidden;
-  int  Ripit_halt;
-  int  Ripit_noquiet;
-  int  Ripit_eject;
+  int  Ripit_lastlog;
+  int  Ripit_excludespecialchars;
+  int  Ripit_underscores;
+  int  Ripit_playlist;
+  int  Ripit_verbosity;
   int  Ripit_fastrip;
   int  Ripit_lowbitrate;
   int  Ripit_maxbitrate;
   int  Ripit_crc;
-  int  Ripit_preset;
-  char Ripit_encopts[256];
-  char Ripit_dev[256];
+  int  Ripit_encoding_type;
+  int  Ripit_oggquality;
+  char Ripit_ripopts[256];
+  char Ripit_encopts1[256];
+  char Ripit_encopts2[256];
+  char Ripit_encopts3[256];
+  char Ripit_encopts4[256];
+  char Ripit_encopts5[256];
   char Ripit_dir[256];
-  int  Ripit_remote;
-  char Ripit_remotevalue[256];
   int  Ripit_nice;
   };
 

@@ -1,0 +1,245 @@
+# vdr-ripit-plugin plugin language source file.
+# This file is distributed under the same license as the vdr-ripit-plugin package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: vdr-ripit-plugin 0.1.0pre\n"
+"Report-Msgid-Bugs-To: <see README>\n"
+"POT-Creation-Date: 2012-01-18 17:02+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: http://www.vdr-portal.de/board1-news/board2-vdr-news/p745194-announce-update-ripit-plugin-version-0-0-2/#post745194\n"
+"Language-Team: http://www.vdr-portal.de/board1-news/board2-vdr-news/p745194-announce-update-ripit-plugin-version-0-0-2/#post745194\n"
+"Language: Italian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "ripit is running"
+msgstr ""
+
+msgid "Plugin Options"
+msgstr ""
+
+msgid "Hide mainmenu entry"
+msgstr "Nascondi voce menu principale"
+
+msgid "Show last x lines of log"
+msgstr ""
+
+msgid "Priority of task (nice)"
+msgstr "Priorità del processo (nice)"
+
+#, fuzzy
+msgid "Verbosity"
+msgstr "Attività dettagliata"
+
+msgid "Rip script Options"
+msgstr ""
+
+#, fuzzy
+msgid "Encoder Options"
+msgstr "Altre opzioni di codifica"
+
+#, fuzzy
+msgid "Free Setting"
+msgstr "Altre opzioni di codifica"
+
+msgid "mp3 Constant bitrate (CBR)"
+msgstr ""
+
+msgid "mp3 Average bitrate (ABR)"
+msgstr ""
+
+msgid "mp3 Variable bitrate (VBR)"
+msgstr ""
+
+msgid "flac (lossless)"
+msgstr ""
+
+msgid "ogg vorbis"
+msgstr ""
+
+msgid "Encoding type"
+msgstr ""
+
+msgid "Quality"
+msgstr ""
+
+#, fuzzy
+msgid "Bitrate"
+msgstr "Bitrate minimo"
+
+msgid "Min. bitrate"
+msgstr "Bitrate minimo"
+
+msgid "Max. bitrate"
+msgstr "Bitrate massimo"
+
+msgid "Rip script extra Options"
+msgstr ""
+
+#, fuzzy
+msgid "Extra encoder options"
+msgstr "Altre opzioni di codifica"
+
+msgid "Add CRC-code in each frame"
+msgstr ""
+
+msgid "Ripper Options"
+msgstr ""
+
+msgid "Fast ripping"
+msgstr ""
+
+msgid "Target Options"
+msgstr ""
+
+msgid "Directory for ripped tracks"
+msgstr "Directory per tracce estratte"
+
+msgid "Exclude special Filesystem chars"
+msgstr ""
+
+msgid "Use underscores instead of spaces"
+msgstr ""
+
+msgid "Create playlist"
+msgstr ""
+
+msgid "About"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "AudioCD Ripper"
+msgstr "Estrazione tracce CD audio"
+
+msgid "Process started..."
+msgstr "Processo avviato..."
+
+msgid "Hide"
+msgstr ""
+
+msgid "Abort"
+msgstr "Termina"
+
+msgid "Ready To Rumble"
+msgstr "Pronto per la trasformazione"
+
+msgid "No process started"
+msgstr "Nessun processo avviato"
+
+msgid "Start"
+msgstr "Avvia"
+
+msgid "HELP::ABOUT$"
+msgstr ""
+
+msgid "HELP::Ripit_hidden$"
+msgstr ""
+
+msgid "HELP::Ripit_lastlog$"
+msgstr ""
+
+msgid "HELP::Ripit_nice$"
+msgstr ""
+
+msgid "HELP::Ripit_verbosity$"
+msgstr ""
+
+msgid "HELP::Ripit_encoding_type$"
+msgstr ""
+
+msgid "HELP::Ripit_oggquality$"
+msgstr ""
+
+msgid "HELP::Ripit_lowbitrate_mp3_CBR_ABR$"
+msgstr ""
+
+msgid "HELP::Ripit_lowbitrate_mp3_VBR$"
+msgstr ""
+
+msgid "HELP::Ripit_maxbitrate_mp3_VBR$"
+msgstr ""
+
+msgid "HELP::Ripit_ripopts$"
+msgstr ""
+
+msgid "HELP::Ripit_encopts1$"
+msgstr ""
+
+msgid "HELP::Ripit_crc$"
+msgstr ""
+
+msgid "HELP::Ripit_encopts2$"
+msgstr ""
+
+msgid "HELP::Ripit_encopts3$"
+msgstr ""
+
+msgid "HELP::Ripit_encopts4$"
+msgstr ""
+
+msgid "HELP::Ripit_encopts5$"
+msgstr ""
+
+msgid "HELP::Ripit_fastrip$"
+msgstr ""
+
+msgid "HELP::Ripit_dir$"
+msgstr ""
+
+msgid "HELP::Ripit_excludespecialchars$"
+msgstr ""
+
+msgid "HELP::Ripit_underscores$"
+msgstr ""
+
+msgid "HELP::Ripit_playlist$"
+msgstr ""
+
+msgid "RipIt"
+msgstr ""
+
+#~ msgid "Shutdown after finished"
+#~ msgstr "Spegni al termine"
+
+#~ msgid "Eject after finished"
+#~ msgstr "Espelli al termine"
+
+#~ msgid "Fast mode"
+#~ msgstr "Modalità veloce"
+
+#~ msgid "none"
+#~ msgstr "nessuno"
+
+#~ msgid "low"
+#~ msgstr "basso"
+
+#~ msgid "standard"
+#~ msgstr "normale"
+
+#~ msgid "great"
+#~ msgstr "buono"
+
+#~ msgid "best"
+#~ msgstr "eccellente"
+
+#~ msgid "Presets"
+#~ msgstr "Livelli predefiniti"
+
+#~ msgid "CRC-check"
+#~ msgstr "Verifica CRC"
+
+#~ msgid "Device"
+#~ msgstr "Lettore"
+
+#~ msgid "Encode remotely"
+#~ msgstr "Codifica da remoto"
+
+#~ msgid "Options for remote encoding"
+#~ msgstr "Opzioni per codifica da remoto"
+
+#~ msgid "Parent"
+#~ msgstr "Precedente"

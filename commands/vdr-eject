@@ -1,0 +1,40 @@
+#!/bin/sh
+
+dvd_dev="/dev/dvd"
+
+mode="$1"
+
+case "$mode" in
+	toggle)
+		eject -T "$dvd_dev"
+	;;
+	open)
+		eject "$dvd_dev"
+	;;
+	close)
+		eject -t "$dvd_dev"
+	;;
+	lock)
+		eject -i on "$dvd_dev"
+	;;
+	unlock)
+		eject -i off "$dvd_dev"
+	;;
+	startburn)
+		eject -t "$dvd_dev"
+	;;
+	stopburn)
+		eject "$dvd_dev"
+	;;
+	getopentime)
+		printf "10"
+	;;
+	getdvddev)
+		printf "$dvd_dev"
+	;;
+	*)
+		printf "Usage: $(basename "$0") {toggle|open|close|startburn|stopburn|getdvddev|getopentime}\n" >&2
+	;;
+esac
+
+exit 0

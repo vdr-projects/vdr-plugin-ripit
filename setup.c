@@ -30,18 +30,23 @@ cRipitSetup RipitSetup;
 cRipitSetup::cRipitSetup(void)
 {
   Ripit_hidden = 0;
-  Ripit_halt = 0;
-  Ripit_noquiet = 0;
-  Ripit_eject = 1;
+  Ripit_lastlog = 17;
+  Ripit_excludespecialchars = 1;
+  Ripit_underscores = 1;
+  Ripit_playlist = 0;
+  Ripit_verbosity = 1;
   Ripit_fastrip = 0;
-  Ripit_lowbitrate = 6;
-  Ripit_maxbitrate = 9;
-  Ripit_crc = 0;
-  Ripit_preset = 2;
-  strcpy(Ripit_encopts, "");
-  strcpy(Ripit_dev,"/dev/cdrom");
-  strcpy(Ripit_dir,"/vdr_daten/mp3/RippedCDs/tmp");
-  Ripit_remote = 0;
-  strcpy(Ripit_remotevalue,"--sshlist master,bedroom --scp");
-  Ripit_nice = 5;
+  Ripit_lowbitrate = 4;
+  Ripit_maxbitrate = 8;
+  Ripit_crc = 1;
+  Ripit_encoding_type = 3;
+  Ripit_oggquality = 5;
+  Ripit_nice = 19;
+  strcpy(Ripit_dir,DEFAULT_RIPIT_DIR);
+  strcpy(Ripit_ripopts, "--coder \"2\" --flacopt \"--ogg --best\"");
+  strcpy(Ripit_encopts1, "-h");
+  strcpy(Ripit_encopts2, "-h");
+  strcpy(Ripit_encopts3, "-h");
+  strcpy(Ripit_encopts4, "--best");
+  strcpy(Ripit_encopts5, "");
 }

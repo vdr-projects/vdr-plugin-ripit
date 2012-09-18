@@ -1,5 +1,22 @@
 VDR Plugin 'ripit' Revision History
 -----------------------------------
+XXXX-XX-XX: Version 0.1.0
+- Regenerated Makefile based upon vdr 1.7.30
+  DEFAULT_RIPIT_DIR could be set in make.config|global or as an make commandline
+  parameter
+- switched to gettext
+  an added Italian translation
+- Added help system for setup menu
+  edit help.h for the english help pages or the po files for the other languages
+- ripit.pl removed, now vdr-ripit/vdr-eject do the job calling the ripper
+- Removed networking support
+- Added cPluginRipit::Active(void) to prevent shutdown if ripping in progress
+- Removed [device] from svdrp command START
+- Reordered Setup menu
+- kBack now leave the log windows
+- some improvements on log windows (there are still room for improvements)
+- Added sourcecode formatter rule
+
 2006-11-14: Version 0.0.2
 - Added SVDRP command "ABORT"
 - Added SVDRP commnad "STATUS"
