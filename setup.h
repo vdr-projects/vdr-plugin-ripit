@@ -45,9 +45,8 @@ public:
   char Ripit_encopts5[256];
   char Ripit_dir[256];
   int  Ripit_nice;
-  };
+};
 
 extern cRipitSetup RipitSetup;
 
 #endif //___SETUP_H
-

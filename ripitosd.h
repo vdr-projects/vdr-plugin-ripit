@@ -20,9 +20,9 @@ public:
 //  virtual void Show(void);
   virtual eOSState ProcessKey(eKeys Key);
   bool Rip_On(void);
-  int lastlogsize;
+  int               lastlogsize;
   std::stringstream logbuffer;
-  };
+};
 
 extern cRipitOsd *ripitosd;
 
