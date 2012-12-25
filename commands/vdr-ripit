@@ -78,7 +78,7 @@ fi
 case "$PARAM_MODE" in
 	kill)
 		touch "$ABORT_FILE"
-		printf "PROCESS MANUALLY ABORTED\nPlease Wait (max. %s Seconds)...\n" "$(vdr-eject getopentime)"
+		printf "PROCESS MANUALLY ABORTED\nPlease Wait (max. %s Seconds)...\n" "$(vdr-opticaldrive getopentime)"
 		for pid in $(pidof perl); do
 			#echo "$(cat /proc/$pid/cmdline | sed 's/\x00/ /g'|sed 's/^perl //')" > /tmp/a
 			#echo "$(cat $LOCK_FILE|sed "s/'//g"|sed 's/^nice -n [[:digit:]]\{2\} //') " > /tmp/b
@@ -93,15 +93,15 @@ case "$PARAM_MODE" in
 			printf "Error, Directory %s not writable\n" "$PARAM_DIR"
 			touch "$ABORT_FILE"
 		fi
-		vdr-eject open
-		printf "Please insert CD... (start in %s Seconds)\n" "$(vdr-eject getopentime)"
-		sleep $(vdr-eject getopentime)
+		vdr-opticaldrive open
+		printf "Please insert CD... (start in %s Seconds)\n" "$(vdr-opticaldrive getopentime)"
+		sleep $(vdr-opticaldrive getopentime)
 		if [ ! -f "$ABORT_FILE" ]; then
-			vdr-eject startburn
+			vdr-opticaldrive startburn
 
 			[ -n "$PARAM_NICE" ] && commandline="$(printf "nice -n '%s' " "$PARAM_NICE")"
 			commandline="${commandline}/usr/bin/ripit"
-			commandline="${commandline}$(printf " --nointeraction --device '%s'" "$(vdr-eject getdvddev)")"
+			commandline="${commandline}$(printf " --nointeraction --device '%s'" "$(vdr-opticaldrive getdev)")"
 			[ -n "$PARAM_VERBOSITY" ] && commandline="${commandline}$(printf " -x '%s'" "$PARAM_VERBOSITY")"
 
 			case "$PARAM_ENCTYPE" in
@@ -164,7 +164,7 @@ case "$PARAM_MODE" in
 		else
 			printf "ABORTED!\n"
 		fi
-		vdr-eject stopburn
+		vdr-opticaldrive stopburn
 		rm -f "$ABORT_FILE"
 		rm -f "$LOCK_FILE"
 	;;
