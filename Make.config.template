@@ -1,0 +1,10 @@
+#
+# User defined Makefile options for the ripit plugin
+#
+# Copy this file to 'Make.config' and change the parameters as necessary.
+#
+
+LOG_FILE?=/tmp/ripit.log
+LOCK_FILE?=/tmp/ripit.process
+ABORT_FILE?=/tmp/ripit.stop
+DEFAULT_RIPIT_DIR?=/srv/AUDIO/ripped
