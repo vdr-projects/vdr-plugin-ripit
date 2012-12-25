@@ -29,7 +29,7 @@ TMPDIR ?= /tmp
 LOG_FILE?=/tmp/ripit.log
 LOCK_FILE?=/tmp/ripit.process
 ABORT_FILE?=/tmp/ripit.stop
-DEFAULT_RIPIT_DIR?=$(VIDEODIR)/$(PLUGIN)
+DEFAULT_TARGET_DIRECTORY?=$(VIDEODIR)/$(PLUGIN)
 
 ### The compiler options:
 
@@ -51,7 +51,7 @@ SOFILE = libvdr-$(PLUGIN).so
 
 ### Includes and Defines (add further entries here):
 
-INCLUDES += -DLOG_FILE='"$(LOG_FILE)"' -DLOCK_FILE='"$(LOCK_FILE)"' -DABORT_FILE='"$(ABORT_FILE)"' -DDEFAULT_RIPIT_DIR='"$(DEFAULT_RIPIT_DIR)"'
+INCLUDES += -DLOG_FILE='"$(LOG_FILE)"' -DLOCK_FILE='"$(LOCK_FILE)"' -DABORT_FILE='"$(ABORT_FILE)"' -DDEFAULT_RIPIT_DIR='"$(DEFAULT_TARGET_DIRECTORY)"'
 
 DEFINES += -DPLUGIN_NAME_I18N='"$(PLUGIN)"'
 
@@ -116,9 +116,9 @@ install-bin:
 	if [ ! -e $(BINDIR)/vdr-eject ]; then install -D commands/vdr-eject $(BINDIR)/vdr-eject; fi
 
 install-datadir:
-	mkdir -p $(DEFAULT_RIPIT_DIR)
-	chmod ugo+rwx $(DEFAULT_RIPIT_DIR)
-	touch $(DEFAULT_RIPIT_DIR)/.$(PLUGIN)
+	mkdir -p $(DEFAULT_TARGET_DIRECTORY)
+	chmod ugo+rwx $(DEFAULT_TARGET_DIRECTORY)
+	touch $(DEFAULT_TARGET_DIRECTORY)/.$(PLUGIN)
 
 install: install-lib install-i18n install-bin install-datadir
 

@@ -146,51 +146,51 @@ cMenuSetupPage *cPluginRipit::SetupMenu(void)
 bool cPluginRipit::SetupParse(const char *Name, const char *Value)
 {
   // Parse your own setup parameters and store their values.
-  if(!strcasecmp(Name, "Ripit_hidden")) RipitSetup.Ripit_hidden = atoi(Value);
-  else if(!strcasecmp(Name, "Ripit_lastlog")) RipitSetup.Ripit_lastlog = atoi(
+  if(!strcasecmp(Name, "plugin_hidemainmenu")) RipitSetup.Ripit_hidden = atoi(Value);
+  else if(!strcasecmp(Name, "plugin_lastloglines")) RipitSetup.Ripit_lastlog = atoi(
       Value);
   else if(!strcasecmp(Name,
-                      "Ripit_excludespecialchars")) RipitSetup.
+                      "target_excludespecialchars")) RipitSetup.
     Ripit_excludespecialchars = atoi(
       Value);
   else if(!strcasecmp(Name,
-                      "Ripit_underscores")) RipitSetup.Ripit_underscores = atoi(
+                      "target_underscores")) RipitSetup.Ripit_underscores = atoi(
       Value);
-  else if(!strcasecmp(Name, "Ripit_playlist")) RipitSetup.Ripit_playlist = atoi(
-      Value);
-  else if(!strcasecmp(Name,
-                      "Ripit_verbosity")) RipitSetup.Ripit_verbosity = atoi(
-      Value);
-  else if(!strcasecmp(Name, "Ripit_fastrip")) RipitSetup.Ripit_fastrip = atoi(
+  else if(!strcasecmp(Name, "target_createplaylist")) RipitSetup.Ripit_playlist = atoi(
       Value);
   else if(!strcasecmp(Name,
-                      "Ripit_lowbitrate")) RipitSetup.Ripit_lowbitrate = atoi(
+                      "plugin_verbosity")) RipitSetup.Ripit_verbosity = atoi(
+      Value);
+  else if(!strcasecmp(Name, "ripper_fastripping")) RipitSetup.Ripit_fastrip = atoi(
       Value);
   else if(!strcasecmp(Name,
-                      "Ripit_maxbitrate")) RipitSetup.Ripit_maxbitrate = atoi(
+                      "encoder_bitrate")) RipitSetup.Ripit_lowbitrate = atoi(
       Value);
   else if(!strcasecmp(Name,
-                      "Ripit_encoding_type")) RipitSetup.Ripit_encoding_type =
+                      "encoder_maxbitrate")) RipitSetup.Ripit_maxbitrate = atoi(
+      Value);
+  else if(!strcasecmp(Name,
+                      "encoder_encodingtype")) RipitSetup.Ripit_encoding_type =
       atoi(Value);
   else if(!strcasecmp(Name,
-                      "Ripit_oggquality")) RipitSetup.Ripit_oggquality = atoi(
+                      "encoder_oggquality")) RipitSetup.Ripit_oggquality = atoi(
       Value);
-  else if(!strcasecmp(Name, "Ripit_crc")) RipitSetup.Ripit_crc = atoi(Value);
-  else if(!strcasecmp(Name, "Ripit_ripopts")) strn0cpy(
+  else if(!strcasecmp(Name, "encoder_addcrc")) RipitSetup.Ripit_crc = atoi(Value);
+  else if(!strcasecmp(Name, "encoder_freesetting")) strn0cpy(
       RipitSetup.Ripit_ripopts, Value, sizeof(RipitSetup.Ripit_ripopts));
-  else if(!strcasecmp(Name, "Ripit_encopts1")) strn0cpy(
+  else if(!strcasecmp(Name, "encoder_mp3cbroptions")) strn0cpy(
       RipitSetup.Ripit_encopts1, Value, sizeof(RipitSetup.Ripit_encopts1));
-  else if(!strcasecmp(Name, "Ripit_encopts2")) strn0cpy(
+  else if(!strcasecmp(Name, "encoder_mp3abroptions")) strn0cpy(
       RipitSetup.Ripit_encopts2, Value, sizeof(RipitSetup.Ripit_encopts2));
-  else if(!strcasecmp(Name, "Ripit_encopts3")) strn0cpy(
+  else if(!strcasecmp(Name, "encoder_mp3vbroptions")) strn0cpy(
       RipitSetup.Ripit_encopts3, Value, sizeof(RipitSetup.Ripit_encopts3));
-  else if(!strcasecmp(Name, "Ripit_encopts4")) strn0cpy(
+  else if(!strcasecmp(Name, "encoder_flacoptions")) strn0cpy(
       RipitSetup.Ripit_encopts4, Value, sizeof(RipitSetup.Ripit_encopts4));
-  else if(!strcasecmp(Name, "Ripit_encopts5")) strn0cpy(
+  else if(!strcasecmp(Name, "encoder_oggoptions")) strn0cpy(
       RipitSetup.Ripit_encopts5, Value, sizeof(RipitSetup.Ripit_encopts5));
-  else if(!strcasecmp(Name, "Ripit_dir")) strn0cpy(RipitSetup.Ripit_dir, Value,
+  else if(!strcasecmp(Name, "target_directory")) strn0cpy(RipitSetup.Ripit_dir, Value,
                                                    sizeof(RipitSetup.Ripit_dir));
-  else if(!strcasecmp(Name, "Ripit_nice")) RipitSetup.Ripit_nice = atoi(Value);
+  else if(!strcasecmp(Name, "plugin_priority")) RipitSetup.Ripit_nice = atoi(Value);
 
   else return false;
 
@@ -457,26 +457,26 @@ void cMenuRipitSetup::Setup(void)
 
 void cMenuRipitSetup::Store(void)
 {
-  SetupStore("Ripit_hidden", RipitSetup.Ripit_hidden);
-  SetupStore("Ripit_lastlog", RipitSetup.Ripit_lastlog);
-  SetupStore("Ripit_excludespecialchars", RipitSetup.Ripit_excludespecialchars);
-  SetupStore("Ripit_underscores", RipitSetup.Ripit_underscores);
-  SetupStore("Ripit_playlist", RipitSetup.Ripit_playlist);
-  SetupStore("Ripit_verbosity", RipitSetup.Ripit_verbosity);
-  SetupStore("Ripit_fastrip", RipitSetup.Ripit_fastrip);
-  SetupStore("Ripit_lowbitrate", RipitSetup.Ripit_lowbitrate);
-  SetupStore("Ripit_maxbitrate", RipitSetup.Ripit_maxbitrate);
-  SetupStore("Ripit_crc", RipitSetup.Ripit_crc);
-  SetupStore("Ripit_encoding_type", RipitSetup.Ripit_encoding_type);
-  SetupStore("Ripit_oggquality", RipitSetup.Ripit_oggquality);
-  SetupStore("Ripit_ripopts", RipitSetup.Ripit_ripopts);
-  SetupStore("Ripit_encopts1", RipitSetup.Ripit_encopts1);
-  SetupStore("Ripit_encopts2", RipitSetup.Ripit_encopts2);
-  SetupStore("Ripit_encopts3", RipitSetup.Ripit_encopts3);
-  SetupStore("Ripit_encopts4", RipitSetup.Ripit_encopts4);
-  SetupStore("Ripit_encopts5", RipitSetup.Ripit_encopts5);
-  SetupStore("Ripit_dir", RipitSetup.Ripit_dir);
-  SetupStore("Ripit_nice", RipitSetup.Ripit_nice);
+  SetupStore("plugin_hidemainmenu", RipitSetup.Ripit_hidden);
+  SetupStore("plugin_lastloglines", RipitSetup.Ripit_lastlog);
+  SetupStore("target_excludespecialchars", RipitSetup.Ripit_excludespecialchars);
+  SetupStore("target_underscores", RipitSetup.Ripit_underscores);
+  SetupStore("target_createplaylist", RipitSetup.Ripit_playlist);
+  SetupStore("plugin_verbosity", RipitSetup.Ripit_verbosity);
+  SetupStore("ripper_fastripping", RipitSetup.Ripit_fastrip);
+  SetupStore("encoder_bitrate", RipitSetup.Ripit_lowbitrate);
+  SetupStore("encoder_maxbitrate", RipitSetup.Ripit_maxbitrate);
+  SetupStore("encoder_addcrc", RipitSetup.Ripit_crc);
+  SetupStore("encoder_encodingtype", RipitSetup.Ripit_encoding_type);
+  SetupStore("encoder_oggquality", RipitSetup.Ripit_oggquality);
+  SetupStore("encoder_freesetting", RipitSetup.Ripit_ripopts);
+  SetupStore("encoder_mp3cbroptions", RipitSetup.Ripit_encopts1);
+  SetupStore("encoder_mp3abroptions", RipitSetup.Ripit_encopts2);
+  SetupStore("encoder_mp3vbroptions", RipitSetup.Ripit_encopts3);
+  SetupStore("encoder_flacoptions", RipitSetup.Ripit_encopts4);
+  SetupStore("encoder_oggoptions", RipitSetup.Ripit_encopts5);
+  SetupStore("target_directory", RipitSetup.Ripit_dir);
+  SetupStore("plugin_priority", RipitSetup.Ripit_nice);
 }
 
 

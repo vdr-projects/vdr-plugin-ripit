@@ -29,7 +29,7 @@ case "$mode" in
 	getopentime)
 		printf "10"
 	;;
-	getdvddev)
+	getdev)
 		printf "$dvd_dev"
 	;;
 	*)

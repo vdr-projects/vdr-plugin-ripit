@@ -7,4 +7,4 @@
 LOG_FILE?=/tmp/ripit.log
 LOCK_FILE?=/tmp/ripit.process
 ABORT_FILE?=/tmp/ripit.stop
-DEFAULT_RIPIT_DIR?=/srv/AUDIO/ripped
+DEFAULT_TARGET_DIRECTORY?=/srv/AUDIO/ripped
