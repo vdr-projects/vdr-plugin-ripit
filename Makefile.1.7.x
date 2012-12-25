@@ -112,8 +112,8 @@ install-lib: $(SOFILE)
 	install -D $^ $(LIBDIR)/$^.$(APIVERSION)
 
 install-bin:
-	install -D commands/vdr-ripit $(BINDIR)
-	if [ ! -e $(BINDIR)/vdr-eject ]; then install -D commands/vdr-eject $(BINDIR); fi
+	install -D commands/vdr-ripit $(BINDIR)/vdr-ripit
+	if [ ! -e $(BINDIR)/vdr-eject ]; then install -D commands/vdr-eject $(BINDIR)/vdr-eject; fi
 
 install-datadir:
 	mkdir -p $(DEFAULT_RIPIT_DIR)
