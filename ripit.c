@@ -107,6 +107,7 @@ cString cPluginRipit::SVDRPCommand(const char *Command, const char *Option,
     }
     else {
       ripitosd->Start_Encode();
+      ReplyCode = 900;
       return "New rip process started";
     }
   }
@@ -117,17 +118,20 @@ cString cPluginRipit::SVDRPCommand(const char *Command, const char *Option,
     }
     else {
       ripitosd->Abort_Encode(1);
+      ReplyCode = 900;
       return "Rip process aborted";
     }
   }
   else if(!strcasecmp(Command, "STATUS")) {
     if(ripitosd->Rip_On())
+      ReplyCode = 920;
       return "A rip process is running";
     else
+      ReplyCode = 910;
       return "No rip process is running";
   }
   else {
-    ReplyCode = 502; return "Wrong command";
+    ReplyCode = 502; return "Command not implemented";
   }
   return NULL;
 }
