@@ -1,39 +1,45 @@
 #!/bin/sh
 
-dvd_dev="/dev/dvd"
+DEV="/dev/dvd"
+OPENTIME=10
 
 mode="$1"
 
 case "$mode" in
 	toggle)
-		eject -T "$dvd_dev"
+		eject -T "$DEV"
 	;;
 	open)
-		eject "$dvd_dev"
+		eject "$DEV"
 	;;
 	close)
-		eject -t "$dvd_dev"
-	;;
-	lock)
-		eject -i on "$dvd_dev"
-	;;
-	unlock)
-		eject -i off "$dvd_dev"
+		eject -t "$DEV"
 	;;
 	startburn)
-		eject -t "$dvd_dev"
+		eject -t "$DEV"
+		eject -i on "$DEV"
 	;;
 	stopburn)
-		eject "$dvd_dev"
+		eject -i off "$DEV"
+		eject "$DEV"
 	;;
 	getopentime)
-		printf "10"
+		printf "%s\n" "$OPENTIME"
 	;;
 	getdev)
-		printf "$dvd_dev"
+		printf "$DEV\n"
+	;;
+	present)
+		if [ -n "$(realpath "$DEV" 2> /dev/null)" ]; then
+			printf "\"%s\" present\n" "$DEV"
+			exit 0
+		else
+			printf "\"%s\" absent\n" "$DEV"
+			exit 1
+		fi
 	;;
 	*)
-		printf "Usage: $(basename "$0") {toggle|open|close|startburn|stopburn|getdvddev|getopentime}\n" >&2
+		printf "Usage: $(basename "$0") {toggle|open|close|startburn|stopburn|getopentime|getdev|present}\n" >&2
 	;;
 esac
 
