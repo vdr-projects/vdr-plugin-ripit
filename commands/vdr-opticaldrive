@@ -17,17 +17,17 @@ case "$mode" in
 	;;
 	startburn)
 		eject -t "$DEV"
-		eject -i on "$DEV"
+		eject -i on "$DEV" > /dev/null
 	;;
 	stopburn)
-		eject -i off "$DEV"
+		eject -i off "$DEV" > /dev/null
 		eject "$DEV"
 	;;
 	getopentime)
 		printf "%s\n" "$OPENTIME"
 	;;
 	getdev)
-		printf "$DEV\n"
+		printf "%s\n" "$DEV"
 	;;
 	present)
 		if [ -n "$(realpath "$DEV" 2> /dev/null)" ]; then

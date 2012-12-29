@@ -1,0 +1,59 @@
+# vdr-ripit-plugin plugin language source file.
+# This file is distributed under the same license as the vdr-ripit-plugin package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: vdr-ripit-plugin 0.1.0pre\n"
+"Report-Msgid-Bugs-To: <see README>\n"
+"POT-Creation-Date: 2012-01-18 17:02+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: http://www.vdr-portal.de/board1-news/board2-vdr-news/p541892-announce-update-ripit-plugin-version-0-0-2/#post541892\n"
+"Language-Team: http://www.vdr-portal.de/board1-news/board2-vdr-news/p541892-announce-update-ripit-plugin-version-0-0-2/#post541892\n"
+"Language: French\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid ""
+"Usage: $s -M <mode start|kill> -d <target directory> [-n <nicelevel -20..19>] [-v <verbosity 0..5>]\\n"
+"                 [-t <encoding type 0..5>] [-o <encoding quality -1..10>] [-l <low bitrate 32..320>]\\n"
+"                 [-m <max. bitrate 32..320>] [-e <encoder options>] [-c <crc 0|1>] [-r <rip options>]\\n"
+"                 [-f <fast rip 0|1>] [ -x <excludes special chars _|NTFS|HFS>] [-u <underscores 0|1>]\\n"
+"                 [-p <create playlist 0|1>] -X <lockfile> -L <logfile> -A <stopfile>"
+msgstr ""
+
+msgid "Error: Error parsing Commandline"
+msgstr ""
+
+msgid "Error: Missing or wrong Mode (-M)"
+msgstr ""
+
+msgid "Error: Missing Directory Parameter (-d)"
+msgstr ""
+
+msgid "Error: Missing -X, -L or -A"
+msgstr ""
+
+msgid "PROCESS MANUALLY ABORTED\\nPlease Wait (max. $d Seconds)..."
+msgstr ""
+
+msgid "Opticaldrive Drive not present. Aborting!"
+msgstr ""
+
+msgid "Error, Directory $s not writable"
+msgstr ""
+
+msgid "Please insert CD... (start in $d Seconds)"
+msgstr ""
+
+msgid "Ripping process started...."
+msgstr ""
+
+msgid "Execute: $s"
+msgstr ""
+
+msgid "ABORTED!"
+msgstr ""
+
+msgid "ALL DONE!"
+msgstr ""

@@ -1,8 +1,22 @@
 #!/bin/sh
 
+export TEXTDOMAIN="$(basename $0)"
+. gettext.sh 2> /dev/null
+if [ $? -eq 1 ]; then
+  eval_gettext () {
+    gettext_eval="printf '%s' \"$1\"" 
+    printf "%s" "`eval \"$gettext_eval\"`"
+  }
+  gettext() {
+    printf "%s" "$1";
+  }
+fi
+
 usage(){
-	printf "Usage: $(basename $0) -M <mode start|kill> -d <target directory> [-n <nicelevel -20..19>] [-v <verbosity 0..5>]\n                 [-t <encoding type 0..5>] [-o <encoding quality -1..10>] [-l <low bitrate 32..320>]\n                 [-m <max. bitrate 32..320>] [-e <encoder options>] [-c <crc 0|1>] [-r <rip options>]\n                 [-f <fast rip 0|1>] [ -x <excludes special chars> _|NTFS|HFS] [-u <underscores 0|1>]\n                 [-p <crate playlist 0|1>] -X <lockfile> -L <logfile> -A <stopfile>\n"
-	[ -n "$cmd_error" ] && echo "$cmd_error"
+	s="$(basename $0)"
+	printf "$(eval_gettext 'Usage: $s -M <mode start|kill> -d <target directory> [-n <nicelevel -20..19>] [-v <verbosity 0..5>]\n                 [-t <encoding type 0..5>] [-o <encoding quality -1..10>] [-l <low bitrate 32..320>]\n                 [-m <max. bitrate 32..320>] [-e <encoder options>] [-c <crc 0|1>] [-r <rip options>]\n                 [-f <fast rip 0|1>] [ -x <excludes special chars _|NTFS|HFS>] [-u <underscores 0|1>]\n                 [-p <create playlist 0|1>] -X <lockfile> -L <logfile> -A <stopfile>')\n"
+	[ -n "$cmd_error" ] && printf "\n$cmd_error"
+	exit 1
 }
 
 debug(){
@@ -21,12 +35,12 @@ debug(){
 	echo "PARAM_UNDERSCORES : >$PARAM_UNDERSCORES<"
 	echo "PARAM_PLAYLIST    : >$PARAM_PLAYLIST<"
 	echo "PARAM_RIPOPTS     : >$PARAM_RIPOPTS<"
-	echo "LOCK_FILE     : >$LOCK_FILE<"
-	echo "LOG_FILE     : >$LOG_FILE<"
-	echo "ABORT_FILE     : >$ABORT_FILE<"
+	echo "LOCK_FILE         : >$LOCK_FILE<"
+	echo "LOG_FILE          : >$LOG_FILE<"
+	echo "ABORT_FILE        : >$ABORT_FILE<"
 }
 
-error=""
+cmd_error=""
 while getopts ":M:d:n:v:t:o:l:m:e:c:r:f:x:u:p:X:L:A:" opt; do
 	case "$opt" in
 		M) PARAM_MODE="$OPTARG";;
@@ -48,17 +62,17 @@ while getopts ":M:d:n:v:t:o:l:m:e:c:r:f:x:u:p:X:L:A:" opt; do
 		L) LOG_FILE="$OPTARG";;
 		A) ABORT_FILE="$OPTARG";;
 		--) break;;
-		\?) cmd_error="Error: Error parsing Commandline\n"; break;;
+		\?) cmd_error="$(gettext 'Error: Error parsing Commandline')\n"; break;;
 	esac
 done
 
-([ "$PARAM_MODE" = "start" ] || [ "$PARAM_MODE" = "kill" ]) || cmd_error="${cmd_error}Error: Missing or wrong Mode (-M)\n"
-([ "$PARAM_MODE" = "start" ] && [ -z "$PARAM_DIR" ]) && cmd_error="${cmd_error}Error: Missing Directory Parameter (-d)\n"
+([ "$PARAM_MODE" = "start" ] || [ "$PARAM_MODE" = "kill" ]) || cmd_error="${cmd_error}$(gettext 'Error: Missing or wrong Mode (-M)')\n"
+([ "$PARAM_MODE" = "start" ] && [ -z "$PARAM_DIR" ]) && cmd_error="${cmd_error}$(gettext 'Error: Missing Directory Parameter (-d)')\n"
 
 [ -n "$cmd_error" ] && usage
 
 if ([ -z "$LOCK_FILE" ] || [ -z "$LOG_FILE" ] || [ -z "$ABORT_FILE" ] ); then
-	cmd_error="${cmd_error}Error: Missing -X, -L or -A\n"
+	cmd_error="${cmd_error}$(gettext 'Error: Missing -X, -L or -A')\n"
 	usage
 	rm -f "$LOCK_FILE"
 	exit 1
@@ -78,7 +92,8 @@ fi
 case "$PARAM_MODE" in
 	kill)
 		touch "$ABORT_FILE"
-		printf "PROCESS MANUALLY ABORTED\nPlease Wait (max. %s Seconds)...\n" "$(vdr-opticaldrive getopentime)"
+		d="$(vdr-opticaldrive getopentime)"
+		printf "$(eval_gettext 'PROCESS MANUALLY ABORTED\nPlease Wait (max. $d Seconds)...')\n"
 		for pid in $(pidof perl); do
 			#echo "$(cat /proc/$pid/cmdline | sed 's/\x00/ /g'|sed 's/^perl //')" > /tmp/a
 			#echo "$(cat $LOCK_FILE|sed "s/'//g"|sed 's/^nice -n [[:digit:]]\{2\} //') " > /tmp/b
@@ -88,14 +103,26 @@ case "$PARAM_MODE" in
 	start)
 		touch "$LOCK_FILE"
 		rm -f "$ABORT_FILE"
-		[ ! -d "$PARAM_DIR" ] && mkdir -p "$PARAM_DIR"
-		if [ ! -w "$PARAM_DIR" ]; then
-			printf "Error, Directory %s not writable\n" "$PARAM_DIR"
-			touch "$ABORT_FILE"
+
+		if ! vdr-opticaldrive present > /dev/null; then
+			printf "%s\n" "$(gettext 'Opticaldrive Drive not present. Aborting!')"
+			rm -f "$LOCK_FILE"
+			exit 1
 		fi
+
+		[ ! -d "$PARAM_DIR" ] && mkdir -p "$PARAM_DIR" 2> /dev/zero
+		if [ ! -w "$PARAM_DIR" ]; then
+			s="$PARAM_DIR"
+			printf "%s\n" "$(eval_gettext 'Error, Directory $s not writable')"
+			rm -f "$LOCK_FILE"
+			exit 1
+		fi
+
 		vdr-opticaldrive open
-		printf "Please insert CD... (start in %s Seconds)\n" "$(vdr-opticaldrive getopentime)"
+		d="$(vdr-opticaldrive getopentime)"
+		printf "%s\n" "$(eval_gettext 'Please insert CD... (start in $d Seconds)')"
 		sleep $(vdr-opticaldrive getopentime)
+
 		if [ ! -f "$ABORT_FILE" ]; then
 			vdr-opticaldrive startburn
 
@@ -155,14 +182,16 @@ case "$PARAM_MODE" in
 			[ "$PARAM_PLAYLIST" = "1" ] && commandline="${commandline}$(printf " -p '%s'" "2")" \
 																|| commandline="${commandline}$(printf " -p '%s'" "0")" \
 
-			printf "Ripping process started....\n"
-			printf "Execute: $commandline\n----------------------------------------\n"
-			echo "$commandline" > "$LOCK_FILE"
+			printf "%s\n" "$(gettext 'Ripping process started....')"
+			s="$commandline"
+			printf "%s\n" "$(eval_gettext 'Execute: $s')"
+			printf "%s\n" "----------------------------------------"
+			printf "%s\n" "$commandline" > "$LOCK_FILE"
 			export USER="$(whoami)"
 			eval "$commandline"
-			[ -f "$ABORT_FILE" ] && printf "ABORTED!\n"
+			[ -f "$ABORT_FILE" ] && printf "%s\n" "$(gettext 'ABORTED!')" || printf "%s\n" "$(gettext 'ALL DONE!')"
 		else
-			printf "ABORTED!\n"
+			printf "%s\n" "$(gettext 'ABORTED!')"
 		fi
 		vdr-opticaldrive stopburn
 		rm -f "$ABORT_FILE"

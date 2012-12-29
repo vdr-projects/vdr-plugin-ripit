@@ -1,0 +1,64 @@
+# vdr-ripit-plugin plugin language source file.
+# This file is distributed under the same license as the vdr-ripit-plugin package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: vdr-ripit-plugin 0.1.0pre\n"
+"Report-Msgid-Bugs-To: <see README>\n"
+"POT-Creation-Date: 2012-01-18 17:02+0100\n"
+"PO-Revision-Date: 2012-12-27 20:51+0100\n"
+"Last-Translator: \n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: German\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid ""
+"Usage: $s -M <mode start|kill> -d <target directory> [-n <nicelevel -20..19>] [-v <verbosity 0..5>]\\n"
+"                 [-t <encoding type 0..5>] [-o <encoding quality -1..10>] [-l <low bitrate 32..320>]\\n"
+"                 [-m <max. bitrate 32..320>] [-e <encoder options>] [-c <crc 0|1>] [-r <rip options>]\\n"
+"                 [-f <fast rip 0|1>] [ -x <excludes special chars _|NTFS|HFS>] [-u <underscores 0|1>]\\n"
+"                 [-p <create playlist 0|1>] -X <lockfile> -L <logfile> -A <stopfile>"
+msgstr ""
+"Nutzung: $s -M <Modus start|kill> -d <Speicherort> [-n <Priorität -20..19>] [-v <Log Detailtiefe 0..5>]\\n"
+"                   [-t <Zielformat 0..5>] [-o <Qualität -1..10>] [-l <Minimale Bitrate 32..320>]\\n"
+"                   [-m <Maximale Bitrate 32..320>] [-e <Encoder Optionen>] [-c <Prüfsummen 0|1>] [-r <Ripper Optionen>]\\n"
+"                   [-f <Schnelles Rippen 0|1>] [ -x <Dateisystem Zeichen Maskieren _|NTFS|HFS>] [-u <Leerzeichen 0|1>]\\n"
+"                   [-p <Playlist erstellen 0|1>] -X <lockfile> -L <logfile> -A <stopfile>"
+
+msgid "Error: Error parsing Commandline"
+msgstr "Fehler: Falsch formatierte Kommandozeilenparameter"
+
+msgid "Error: Missing or wrong Mode (-M)"
+msgstr "Fehler: Fehlender oder falscher Modusparameter (-M)"
+
+msgid "Error: Missing Directory Parameter (-d)"
+msgstr "Fehler: Fehlender Verzeichnisparameter (-d)"
+
+msgid "Error: Missing -X, -L or -A"
+msgstr "Fehler: Felhlende Argument -X, -L oder -A"
+
+msgid "PROCESS MANUALLY ABORTED\\nPlease Wait (max. $d Seconds)..."
+msgstr "VORGANG MANUELL ABGEBROCHEN\\nBitte warten (maximal $d Sekunden)..."
+
+msgid "Opticaldrive Drive not present. Aborting!"
+msgstr "Optisches Laufwerk nicht vorhanden. Abbruch!"
+
+msgid "Error, Directory $s not writable"
+msgstr "Fehler, keine Schreibrechte im Verzeichnis \"$s\""
+
+msgid "Please insert CD... (start in $d Seconds)"
+msgstr "Bitte CD einlegen... (starte in $d Sekunden)"
+
+msgid "Ripping process started...."
+msgstr "Rippen gestartet...."
+
+msgid "Execute: $s"
+msgstr "Starte: $s"
+
+msgid "ABORTED!"
+msgstr "ABGEBROCHEN!"
+
+msgid "ALL DONE!"
+msgstr "FERTIG!"

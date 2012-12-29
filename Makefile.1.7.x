@@ -19,17 +19,26 @@ VERSION = $(shell grep 'static const char \*VERSION *=' $(PLUGIN).h | awk '{ pri
 PKGCFG   = $(if $(VDRDIR),$(shell pkg-config --variable=$(1) $(VDRDIR)/vdr.pc),$(shell pkg-config --variable=$(1) vdr || pkg-config --variable=$(1) ../../../vdr.pc))
 LIBDIR   = $(DESTDIR)$(call PKGCFG,libdir)
 LOCDIR   = $(DESTDIR)$(call PKGCFG,locdir)
+PLGCFG   = $(call PKGCFG,plgcfg)
 BINDIR   = $(DESTDIR)$(call PKGCFG,bindir)
 VIDEODIR = $(DESTDIR)$(call PKGCFG,videodir)
 #
 TMPDIR ?= /tmp
 
+### Allow global user defined options to overwrite defaults:
+
+-include \$(PLGCFG)
+
 ### Allow user defined options to overwrite defaults:
+
 -include Make.config
-LOG_FILE?=/tmp/ripit.log
-LOCK_FILE?=/tmp/ripit.process
-ABORT_FILE?=/tmp/ripit.stop
-DEFAULT_TARGET_DIRECTORY?=$(VIDEODIR)/$(PLUGIN)
+
+### Default values:
+
+PLUGIN_RIPIT_LOG_FILE?=/tmp/ripit.log
+PLUGIN_RIPIT_LOCK_FILE?=/tmp/ripit.process
+PLUGIN_RIPIT_ABORT_FILE?=/tmp/ripit.stop
+PLUGIN_RIPIT_DEFAULT_TARGET_DIRECTORY?=$(VIDEODIR)/$(PLUGIN)
 
 ### The compiler options:
 
@@ -51,7 +60,7 @@ SOFILE = libvdr-$(PLUGIN).so
 
 ### Includes and Defines (add further entries here):
 
-INCLUDES += -DLOG_FILE='"$(LOG_FILE)"' -DLOCK_FILE='"$(LOCK_FILE)"' -DABORT_FILE='"$(ABORT_FILE)"' -DDEFAULT_RIPIT_DIR='"$(DEFAULT_TARGET_DIRECTORY)"'
+INCLUDES += -DLOG_FILE='"$(PLUGIN_RIPIT_LOG_FILE)"' -DLOCK_FILE='"$(PLUGIN_RIPIT_LOCK_FILE)"' -DABORT_FILE='"$(PLUGIN_RIPIT_ABORT_FILE)"' -DDEFAULT_RIPIT_DIR='"$(PLUGIN_RIPIT_DEFAULT_TARGET_DIRECTORY)"'
 
 DEFINES += -DPLUGIN_NAME_I18N='"$(PLUGIN)"'
 
@@ -115,12 +124,20 @@ install-bin:
 	install -D commands/vdr-ripit $(BINDIR)/vdr-ripit
 	if [ ! -e $(BINDIR)/vdr-eject ]; then install -D commands/vdr-eject $(BINDIR)/vdr-eject; fi
 
+install-bin-mo:
+	mkdir -p $(LOCDIR)/de/LC_MESSAGES/
+	msgfmt -o $(LOCDIR)/de/LC_MESSAGES/vdr-ripit.mo commands/po/vdr-ripit.de.po
+	mkdir -p $(LOCDIR)/it/LC_MESSAGES/
+	msgfmt -o $(LOCDIR)/it/LC_MESSAGES/vdr-ripit.mo commands/po/vdr-ripit.it.po
+	mkdir -p $(LOCDIR)/fr/LC_MESSAGES/
+	msgfmt -o $(LOCDIR)/fr/LC_MESSAGES/vdr-ripit.mo commands/po/vdr-ripit.fr.po
+
 install-datadir:
 	mkdir -p $(DEFAULT_TARGET_DIRECTORY)
 	chmod ugo+rwx $(DEFAULT_TARGET_DIRECTORY)
 	touch $(DEFAULT_TARGET_DIRECTORY)/.$(PLUGIN)
 
-install: install-lib install-i18n install-bin install-datadir
+install: install-lib install-i18n install-bin install-bin-mo install-datadir
 
 dist: $(I18Npo) clean
 	@-rm -rf $(TMPDIR)/$(ARCHIVE)

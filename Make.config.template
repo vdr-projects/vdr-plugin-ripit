@@ -4,7 +4,19 @@
 # Copy this file to 'Make.config' and change the parameters as necessary.
 #
 
-LOG_FILE?=/tmp/ripit.log
-LOCK_FILE?=/tmp/ripit.process
-ABORT_FILE?=/tmp/ripit.stop
-DEFAULT_TARGET_DIRECTORY?=/srv/AUDIO/ripped
+# Used for IPC, the VDR user need access rights to create, delete and modify
+# these files (the directory need already exists). Make sure that files left
+# here (e.g. on VDR crash) are deleted at system startup.
+
+PLUGIN_RIPIT_LOG_FILE=/tmp/ripit.log
+PLUGIN_RIPIT_LOCK_FILE=/tmp/ripit.process
+PLUGIN_RIPIT_ABORT_FILE=/tmp/ripit.stop
+
+
+
+# The default value for the target. Could be changed later in plugin setup.
+# The VDR user need access rights to create it with
+# mkdir -p <PLUGIN_RIPIT_DEFAULT_TARGET_DIRECTORY>/<cd name>
+# an write files to that directory.
+
+PLUGIN_RIPIT_DEFAULT_TARGET_DIRECTORY=/srv/AUDIO/ripped
