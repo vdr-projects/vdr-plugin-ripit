@@ -37,7 +37,7 @@ msgid "Error: Missing Directory Parameter (-d)"
 msgstr "Fehler: Fehlender Verzeichnisparameter (-d)"
 
 msgid "Error: Missing -X, -L or -A"
-msgstr "Fehler: Felhlende Argument -X, -L oder -A"
+msgstr "Fehler: Fehlendes Argument -X, -L oder -A"
 
 msgid "PROCESS MANUALLY ABORTED\\nPlease Wait (max. $d Seconds)..."
 msgstr "VORGANG MANUELL ABGEBROCHEN\\nBitte warten (maximal $d Sekunden)..."
